@@ -34,12 +34,7 @@ Jeannie.prototype.handleMessage = function(messageStr)
           break;
 
       case "create-request":
-					console.log("Antes: ");
-					console.log(this);
 					result.data.requestId = createRequest(this, messageJson);
-					console.log("Depois:");
-					console.log(this);
-					
 					notifyUpdate(this);
           break;
 

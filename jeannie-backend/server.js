@@ -10,11 +10,12 @@ var sockjs_opts = {
 };
 
 // jeannie
+var jeannie = new Jeannie();
+
 var jeannie_sockjs = sockjs.createServer(sockjs_opts);
 jeannie_sockjs.on('connection',
   function(conn)
-  {
-  	var jeannie = new Jeannie();
+  {	
   	jeannie.register(conn);
   	conn.on('data', function(message) {
       jeannie.handleMessage(message);
