@@ -1,0 +1,74 @@
+[
+    {
+        "input": "apagar máquina",
+        "output": "vm_delete"
+    },
+    {
+        "input": "deletar máquina",
+        "output": "vm_delete"
+    },
+    {
+        "input": "apagar vm",
+        "output": "vm_delete"
+    },
+    {
+        "input": "deletar vm",
+        "output": "vm_delete"
+    },
+    {
+        "input": "tirar snapshot",
+        "output": "vm_snapshot"
+    },
+    {
+        "input": "criar snapshot",
+        "output": "vm_snapshot"
+    },
+    {
+        "input": "criar máquina",
+        "output": "vm_create"
+    },
+    {
+        "input": "criar servidor",
+        "output": "vm_create"
+    },
+    {
+        "input": "criar vm",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de uma vm ram disco",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de uma vm",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de uma máquina ram disco",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de uma máquina",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de um servidor ram disco",
+        "output": "vm_create"
+    },
+    {
+        "input": "preciso de um servidor",
+        "output": "vm_create"
+    },
+    {
+        "input": "aumento disco",
+        "output": "vm_disk"
+    },
+    {
+        "input": "aumentar disco",
+        "output": "vm_disk"
+    },
+    {
+        "input": "acrescentar disco",
+        "output": "vm_disk"
+    }
+]

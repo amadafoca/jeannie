@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{myApp.selectedThread.text}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #scrollChat  >
+
+    <ion-list style="padding-bottom: 150px;" class="messages">
+      <ion-item text-wrap *ngFor="let mensagem of conversation">
+        <ion-avatar item-left *ngIf="mensagem.doAssistente">
+          <img [src]="img_assistente">
+        </ion-avatar>
+        <ion-avatar item-right *ngIf="mensagem.doCliente">
+          <img [src]="img_usuario">
+        </ion-avatar>
+        <div *ngFor="let texto of mensagem.textos" [class.message_assistente]="mensagem.doAssistente" [class.message_usuario]="mensagem.doCliente">
+            <div [innerHTML]="texto"></div>
+        </div>
+      </ion-item>
+      <ion-item *ngIf="modoDigitando"><img src="img/snake-loader.gif"><div  style="color:silver;font-size:small">assistente digitando...</div></ion-item>
+
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <form>
+    <ion-item>
+      <ion-input type="text" #cInputRequest placeholder="o que deseja?" [(ngModel)]="inputText" name="inputText"></ion-input>
+      <button ion-button item-right outline type="submit" [disabled]="inputText==''" (click)="newMessage()">Enviar</button>
+    </ion-item>
+  </form>
+</ion-footer>

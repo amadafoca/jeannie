@@ -1,0 +1,27 @@
+page-page2 {
+  .messages {
+  border-color: white;
+
+  .message_assistente {
+      background-color: #007AFF;
+      color:white;
+       padding: 10px  !important;
+         border-radius: 10px !important;
+
+  }
+  .message_usuario {
+      background-color: #C7C7CC;
+      color:black;
+       padding: 10px  !important;
+         border-radius: 10px !important;
+
+  }
+
+  }
+  .list-md .item-block .item-inner {
+  border-bottom: 1px solid white;
+}
+a{
+  color:#ffe145;
+}
+}

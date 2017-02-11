@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Jeannie</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #mainPage padding>
+
+  <ion-card *ngFor="let thread of threads; let idx = index">
+
+    <ion-card-content (click)="clickCard(idx)">
+      <ion-card-title>
+        {{thread.text}}
+      </ion-card-title>
+      <p>
+        {{thread.creation_date}}
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='checkmark'></ion-icon>
+          Sucesso
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='refresh'></ion-icon>
+          Reexecutar
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='more'></ion-icon>
+          Mais
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+  
+</ion-content>
+
+<ion-footer>
+  <form>
+    <ion-item>
+      <ion-input type="text" #cInputRequest placeholder="o que deseja?" [(ngModel)]="inputText" name="inputText"></ion-input>
+      <button ion-button item-right outline type="submit" [disabled]="inputText==''" (click)="sendRequest()">Enviar</button>
+    </ion-item>
+  </form>
+</ion-footer>
