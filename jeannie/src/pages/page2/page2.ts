@@ -19,6 +19,10 @@ export class Page2 {
 
   img_assistente: string = "img/avatar-ts-jeannie.png";
   img_usuario: string = "img/avatar-ts-ms.png";
+  img_rundeck: string = "img/rundeck_icon.png";
+
+  card_sucess: boolean = false;
+  comment_type = 'question';
 
   myApp: any = MyApp;
 
@@ -57,8 +61,6 @@ export class Page2 {
   }
 
   ngAfterContentInit() {
-    //this.inputText = this.myApp.selectedThread.text;
-    //this.newMessage();
     this.scrollDown();
   }
 
@@ -73,6 +75,8 @@ export class Page2 {
     this.loading.present();
     setTimeout(500);
     this.conversation.push(new Mensagem([this.inputText], true, false));
+    this.inputText = '';
+    this.scrollDown();
     this.loading.dismiss();
   }
 }

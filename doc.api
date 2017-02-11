@@ -1,0 +1,12 @@
+action:
+  get-board
+  create-request
+  create-comment
+  answer-comment
+
+  update-board
+
+
+{ 'action' : 'get-board' }
+
+{ 'result' : { 'type' : 'ok' , 'data' : [{}, ] } }

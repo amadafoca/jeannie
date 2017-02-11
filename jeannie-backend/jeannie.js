@@ -1,97 +1,144 @@
+var Request = require('./entity.js').Request;
+var Comment = require('./entity.js').Comment;
+
+// jeannie core
 function Jeannie()
 {
 	this.conn;
-  this.request_id;
+  this.requests = [];
+	this.request_id_count = 0;
+	this.comment_id_count = 0;
 }
 
 Jeannie.prototype.register = function(conn)
 {
+	console.log("Connection registered: " + conn.id)
 	this.conn = conn;
 }
 
-Jeannie.prototype.handleMessage(messageStr)
+Jeannie.prototype.handleMessage = function(messageStr)
 {
-  if (messageStr == null || messageStr == "")
+	if (messageStr == null || messageStr == "")
   {
       return {"type" : "error", "text" : "Message cannot be empty or null."};
   }
 
-  messageJson = JSON.parse(messageStr);
+  var messageJson = JSON.parse(messageStr);
 
-  switch (input.action)
+	var result = {'type' : 'ok', 'data' : {}}
+
+  switch (messageJson.action)
   {
-      case "board-subscribe":
-          result = subscribeBoard(messageJson);
+      case "get-board":
+					result.data.requests = getBoard(this, messageJson);
           break;
 
-      case "thread-subscribe":
-          result = subscribeThread(messageJson);
+      case "create-request":
+					console.log("Antes: ");
+					console.log(this);
+					result.data.requestId = createRequest(this, messageJson);
+					console.log("Depois:");
+					console.log(this);
+					
+					notifyUpdate(this);
           break;
 
-      case "thread-create":
-          result = createThread(messageJson);
+      case "create-comment":
+					var commId = createComment(this, messageJson);
+
+					if (commId > 0)
+					{
+						result.data.commentId = commId;
+						notifyUpdate(this);
+					}
+					else
+					{
+							result.type = "error"
+							result.error_message = "Error creating comment"
+					}
+
           break;
 
-      case "comment-create":
-          result = createComment(messageJson);
-          break;
+      case "answer-comment":
+				var output = answerComment(this, messageJson);
 
-      case "comment-answer":
-          result = answerComment(messageJson);
-          break;
+				if (output == 0)
+					notifyUpdate(this);
+				else
+				{
+						result.type = "error"
+						result.error_message = "Error creating comment"
+				}
+
+				break;
 
       default:
-          result = {"type" : "error", "text" : "Undefined action \'" + messageJson.action + "\'"};
+          result.type = "error";
+					result.error_message = "Undefined action \'" + messageJson.action + "\'";
   }
 
   responseJson = messageJson;
   responseJson.result = result;
 
-  conn.write(JSON.stringify(responseJson));
+	console.log(result);
+
+  this.conn.write(JSON.stringify(responseJson));
 }
 
-function subscribeBoard(request) {
-    return message;
-}
+module.exports = Jeannie;
 
-function subscribeThread(request) {
-    return message;
-}
+// auxialiar functions
 
-function createThread(sender, request) {
-    var thread = {
-        'id': thread_id_seq++,
-        'text': message.data.text,
-        'created': Date.now(),
-        'last-modified': Date.now(),
-        'estimated-duration': '2 min',
-        'scheduled-date': '',
-        'state': 'pending_user'
-    };
-
-    threads.push(thread);
-    console.log(thread);
-
-    message.result = "success";
-
-    notify(sender, 'board-update');
-
-    return message;
-}
-
-function createComment(request) {
-    return message;
-}
-
-function answerComment(request) {
-    return message;
-}
-
-function notify(sender, update_type)
+function getBoard(jeannie, messageJson)
 {
-  if (update_type == 'board-update')
-  {
-      var message = {'update': 'board-update', 'threads' : threads};
-      sender(message);
-  }
+		return jeannie.requests;
+}
+
+function createRequest(jeannie, messageJson)
+{
+		var request = new Request(messageJson.description);
+    jeannie.requests.push(request);
+		request.id = jeannie.request_id_count++;
+
+		console.log(request);
+
+	  return request.id;
+}
+
+function createComment(jeannie, messageJson)
+{
+		var reqId = messageJson.data.requestId;
+		var comment = new Comment(messageJson.data.description);
+		comment.id = comment_id_count++;
+
+		for (var i = 0; i < jeannie.requests.length; i++)
+			if (jeannie.requests[i].id == reqId)
+			{
+				jeannie.requests[i].clarification.push(comment);
+				return comment.id;
+			}
+
+		return -1;
+}
+
+function answerComment(jeannie, messageJson)
+{
+	var reqId = messageJson.data.requestId;
+	var commId = messageJson.data.commentId;
+
+	for (var i = 0; i < jeannie.requests.length; i++)
+		if (jeannie.requests[i].id == reqId)
+			for  (var j = 0; jeannie.requests[i].clarification.length; j++)
+				if (jeannie.requests[i].clarification[j].id == commId)
+				{
+					jeannie.requests[i].clarification[j].selected = messageJson.data.selected;
+					return 0;
+				}
+
+	return -1;
+}
+
+function notifyUpdate(jeannie)
+{
+	jeannie.conn.write({'action' : 'update-board', 'data' : { 'requests' : jeannie.requests}});
 }

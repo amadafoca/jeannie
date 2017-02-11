@@ -2,7 +2,7 @@
 var http = require('http');
 var sockjs = require('sockjs');
 var node_static = require('node-static');
-var jeannie = require('./jeannie.js')
+var Jeannie = require('./jeannie.js')
 
 // variables
 var sockjs_opts = {
@@ -13,11 +13,13 @@ var sockjs_opts = {
 var jeannie_sockjs = sockjs.createServer(sockjs_opts);
 jeannie_sockjs.on('connection',
   function(conn)
-    {
-    	var jeannie = new Jeannie();
-    	jeannie.register(conn);
-    	conn.on('data', jeannie.handleMessage);
-    }
+  {
+  	var jeannie = new Jeannie();
+  	jeannie.register(conn);
+  	conn.on('data', function(message) {
+      jeannie.handleMessage(message);
+    });
+  }
 );
 
 var server = http.createServer();
@@ -26,7 +28,7 @@ jeannie_sockjs.installHandlers(server, {
 });
 
 // static dir
-var static_directory = new node_static.Server(__dirname);
+//var static_directory = new node_static.Server(__dirname);
 // server.addListener('request', function(req, res) {
 //     static_directory.serve(req, res);
 // });

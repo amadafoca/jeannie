@@ -7,28 +7,32 @@ import { Page2 } from '../pages/page2/page2';
 
 import { JeannieService } from '../services/services';
 
+import { Card } from './entidades';
 
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  private jeannieService: JeannieService = new JeannieService();
 
   rootPage: any = Page1;
 
   pages: Array<{ title: string, component: any }>;
 
+  jeannieService: JeannieService = new JeannieService();
   selectedThread = 0;
+  cards: Card[];
 
   constructor(public platform: Platform) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Pessoal', component: Page1 },
-      { title: 'GSAP', component: Page2 }
+      { title: 'Requisições', component: Page1 },
+      { title: 'Detalhe', component: Page2 }
     ];
+
+    this.cards = [];
 
   }
 
@@ -38,15 +42,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      this.jeannieService.open();
-      this.jeannieService.onOpen((e) => {
-        var boardId = 42;
-        // this.jeannieService.send('board-subscribe', { 'board-id': '${boardId}' });
-        this.jeannieService.send('thread-create', {'text' : 'Minha primeira thread'});
-        this.jeannieService.onMessage((data) => {
-          alert(JSON.stringify(data));
-        })
-      });
+
+      // this.loadCards();
+      this.createCard();
+
     });
   }
 
@@ -56,4 +55,36 @@ export class MyApp {
     window.alert(page.component);
     this.nav.setRoot(page.component);
   }
+
+  loadCards() {
+    this.jeannieService.open();
+    this.jeannieService.onOpen((e) => {
+      var action = "get-board";
+      // this.jeannieService.send('board-subscribe', { 'board-id': '${boardId}' });
+      this.jeannieService.send(action, {});
+      this.jeannieService.onMessage((data) => {
+        //preencher o this.cards com base no data
+        // alert(JSON.stringify(data));
+        this.cards.push(
+          new Card(1, 'Reiniciar servidor Liberty SGO em desenvolvimento.',
+          ['1 comentario'], Date.now(), Date.now(), 'started')
+        );
+      })
+    });
+  }
+
+  createCard() {
+    this.jeannieService.open();
+    this.jeannieService.onOpen((e) => {
+      var action = "create-request";
+      var description = "teste cation create-request";
+      // this.jeannieService.send('board-subscribe', { 'board-id': '${boardId}' });
+      this.jeannieService.send(action, description);
+      this.jeannieService.onMessage((data) => {
+        alert(JSON.stringify(data));
+      })
+    });
+
+  }
+
 }
