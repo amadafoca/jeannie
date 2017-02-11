@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Page1 } from '../page1/page1';
@@ -23,6 +23,8 @@ export class Page2 {
   myApp: any = MyApp;
 
   loading: any;
+
+  @ViewChild('page2') page2;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private loadingCtrl: LoadingController) {
@@ -52,6 +54,16 @@ export class Page2 {
     this.navCtrl.push(Page2, {
       item: item
     });
+  }
+
+  ngAfterContentInit() {
+    //this.inputText = this.myApp.selectedThread.text;
+    //this.newMessage();
+    this.scrollDown();
+  }
+
+  scrollDown() {
+    this.page2.scrollToBottom(1000);
   }
 
   newMessage() {

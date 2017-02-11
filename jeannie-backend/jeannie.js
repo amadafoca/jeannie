@@ -1,50 +1,64 @@
-module.exports = {
-    handler: function(sender, message) {
-        if (message == null || message == "")
-        {
-            message.result = "error";
-            return message;
-        }
-
-        console.log(message);
-
-        switch (message.action) {
-            case "board-subscribe":
-                return subscribeBoard(sender, message);
-
-            case "thread-subscribe":
-                return subscribeThread(sender, message);
-
-            case "thread-create":
-                return createThread(sender, message);
-
-            case "comment-create":
-                return createComment(sender, message);
-
-            case "comment-answer":
-                return answerComment(sender, message);
-
-            default:
-                message.result = "error";
-
-                return message;
-        }
-    }
+function Jeannie()
+{
+	this.conn;
+  this.request_id;
 }
 
-var threads = [];
-var thread_id_seq = 1;
-var comment_id_seq = 1;
+Jeannie.prototype.register = function(conn)
+{
+	this.conn = conn;
+}
 
-function subscribeBoard(sender, message) {
+Jeannie.prototype.handleMessage(messageStr)
+{
+  if (messageStr == null || messageStr == "")
+  {
+      return {"type" : "error", "text" : "Message cannot be empty or null."};
+  }
+
+  messageJson = JSON.parse(messageStr);
+
+  switch (input.action)
+  {
+      case "board-subscribe":
+          result = subscribeBoard(messageJson);
+          break;
+
+      case "thread-subscribe":
+          result = subscribeThread(messageJson);
+          break;
+
+      case "thread-create":
+          result = createThread(messageJson);
+          break;
+
+      case "comment-create":
+          result = createComment(messageJson);
+          break;
+
+      case "comment-answer":
+          result = answerComment(messageJson);
+          break;
+
+      default:
+          result = {"type" : "error", "text" : "Undefined action \'" + messageJson.action + "\'"};
+  }
+
+  responseJson = messageJson;
+  responseJson.result = result;
+
+  conn.write(JSON.stringify(responseJson));
+}
+
+function subscribeBoard(request) {
     return message;
 }
 
-function subscribeThread(sender, message) {
+function subscribeThread(request) {
     return message;
 }
 
-function createThread(sender, message) {
+function createThread(sender, request) {
     var thread = {
         'id': thread_id_seq++,
         'text': message.data.text,
@@ -65,11 +79,11 @@ function createThread(sender, message) {
     return message;
 }
 
-function createComment(sender, message) {
+function createComment(request) {
     return message;
 }
 
-function answerComment(sender, message) {
+function answerComment(request) {
     return message;
 }
 

@@ -3,11 +3,47 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{myApp.selectedThread.text}}</ion-title>
+    <ion-title>Requisição #{{myApp.selectedThread.id}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content #scrollChat  >
+<ion-content #page2>
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-card-title>
+
+      </ion-card-title>
+      <p><b>{{myApp.selectedThread.text}}</b></p>
+      <p>
+        Requisição #{{myApp.selectedThread.id}} - {{myApp.selectedThread.creation_date}}
+      </p>
+
+    </ion-card-content>
+
+    <!-- <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='checkmark'></ion-icon>
+          Sucesso
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='refresh'></ion-icon>
+          Reexecutar
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='more'></ion-icon>
+          Mais
+        </button>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-card>
 
     <ion-list style="padding-bottom: 150px;" class="messages">
       <ion-item text-wrap *ngFor="let mensagem of conversation">
