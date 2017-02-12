@@ -2,7 +2,7 @@
 import * as SockJS from 'sockjs-client';
 
 export class JeannieService {
-	URL: string = 'http://10.111.40.164:8080/jeannie';
+	URL: string = 'http://localhost:8080/jeannie';
 	sock: SockJS;
 	handlers = {};
 

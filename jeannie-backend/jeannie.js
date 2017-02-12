@@ -135,5 +135,5 @@ function answerComment(jeannie, messageJson)
 
 function notifyUpdate(jeannie)
 {
-	jeannie.conn.write({'action' : 'update-board', 'data' : { 'requests' : jeannie.requests}});
+	jeannie.conn.write(JSON.stringify({'action' : 'update-board', 'data' : { 'requests' : jeannie.requests}}));
 }
