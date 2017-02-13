@@ -1,0 +1,20 @@
+{
+  "name": "jeannie-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "limdu": "^0.8.0",
+    "natural": "^0.4.0",
+    "node-static": "^0.7.9",
+    "serialization": "^0.2.0",
+    "sockjs": "^0.3.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
