@@ -1,5 +1,4 @@
-[
-    {
+[{
         "input": "apagar máquina",
         "output": "vm_delete"
     },

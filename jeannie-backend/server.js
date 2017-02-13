@@ -13,20 +13,15 @@ var sockjs_opts = {
 var jeannie = new Jeannie();
 
 var jeannie_sockjs = sockjs.createServer(sockjs_opts);
-jeannie_sockjs.on('connection',
-  function(conn)
-  {	
-  	jeannie.register(conn);
-  	conn.on('data', function(message) {
-      jeannie.handleMessage(message);
+jeannie_sockjs.on('connection', function(conn) {
+    jeannie.register(conn);
+    conn.on('data', function(message) {
+        jeannie.handleMessage(message);
     });
-  }
-);
+});
 
 var server = http.createServer();
-jeannie_sockjs.installHandlers(server, {
-    prefix: '/jeannie'
-});
+jeannie_sockjs.installHandlers(server, {prefix: '/jeannie'});
 
 // static dir
 //var static_directory = new node_static.Server(__dirname);

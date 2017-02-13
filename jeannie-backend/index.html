@@ -1,19 +1,27 @@
 <html>
-<head>
-  <script src="http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js"></script>
-</head>
-<body>
-  <script>
-    var sockjs_url = '/jeannie';
-    var sockjs = new SockJS(sockjs_url);
-    sockjs.onopen    = function()  {print('[*] open', sockjs.protocol);};
-    sockjs.onmessage = function(e) {print('[.] message', e.data);};
-    sockjs.onclose   = function()  {print('[*] close');};
 
-    function send() {
-      sockjs.send("{'action':'thread-create', 'data' : {'text' : 'Minha primeira thread'}}");
-    }
-  </script>
-  <button type="buttom" onsubmit="">send</buttom>
+<head>
+    <script src="http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var sockjs_url = '/jeannie';
+        var sockjs = new SockJS(sockjs_url);
+        sockjs.onopen = function() {
+            print('[*] open', sockjs.protocol);
+        };
+        sockjs.onmessage = function(e) {
+            print('[.] message', e.data);
+        };
+        sockjs.onclose = function() {
+            print('[*] close');
+        };
+
+        function send() {
+            sockjs.send("{'action':'thread-create', 'data' : {'text' : 'Minha primeira thread'}}");
+        }
+    </script>
+    <button type="buttom" onsubmit="">send</buttom>
 </body>
 </html>

@@ -14,8 +14,7 @@ function newClassifier() {
 
     // Initialize a classifier with the base classifier type and the feature extractor:
     return new limdu.classifiers.EnhancedClassifier({
-        classifierType: TextClassifier,
-        normalizer: limdu.features.LowerCaseNormalizer,
+        classifierType: TextClassifier, normalizer: limdu.features.LowerCaseNormalizer,
         // normalizer: natural.PorterStemmerPt.tokenizeAndStem,
         // function(str) {
         //     limdu.features.LowerCaseNormalizer(natural.PorterStemmerEs.tokenizeAndStem(str))
@@ -27,7 +26,6 @@ function newClassifier() {
         // featureExtractor: limdu.features.NGramsOfWords(1)
     });
 }
-
 
 var intentClassifier = newClassifier();
 
@@ -55,7 +53,6 @@ fs.writeFile('./virtualization.json', intentClassifierString);
 // |- Liberty (criar ambiente, instalar/atualizar app, INC)
 // |- Canal RH (INC)
 // |- Triagem Humana
-
 
 // - catálogo de serviços diverso
 // - o cliente pede algo, iníciando uma thread (o cliente pode especificar agendamento e hints de solver/equipe)

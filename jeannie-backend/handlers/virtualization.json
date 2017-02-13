@@ -1,168 +1,167 @@
 {
-	"createNewObjectString": "function newClassifier() {\n    // First, define our base classifier type (a multi-label classifier based on winnow):\n    // var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {\n    //     binaryClassifierType: limdu.classifiers.Winnow.bind(0, {\n    //         retrain_count: 10\n    //     })\n    // });\n    var TextClassifier = limdu.classifiers.Bayesian.bind(0, {});\n\n    // Initialize a classifier with the base classifier type and the feature extractor:\n    return new limdu.classifiers.EnhancedClassifier({\n        classifierType: TextClassifier,\n        normalizer: limdu.features.LowerCaseNormalizer,\n        // normalizer: natural.PorterStemmerPt.tokenizeAndStem,\n        // function(str) {\n        //     limdu.features.LowerCaseNormalizer(natural.PorterStemmerEs.tokenizeAndStem(str))\n        // },\n        featureExtractor: function(sample, features) {\n            var grams = natural.PorterStemmerPt.tokenizeAndStem(sample);\n            limdu.features.NGramsFromArray(1, null, grams, features)\n        }\n        // featureExtractor: limdu.features.NGramsOfWords(1)\n    });\n}",
-	"object": {
-		"classifier": {
-			"cats": {
-				"vm_delete": 4,
-				"vm_snapshot": 2,
-				"vm_create": 9,
-				"vm_disk": 3
-			},
-			"words": {
-				"apag": {
-					"vm_delete": 2
-				},
-				"máquin": {
-					"vm_delete": 2,
-					"vm_create": 3
-				},
-				"delet": {
-					"vm_delete": 2
-				},
-				"vm": {
-					"vm_delete": 2,
-					"vm_create": 3
-				},
-				"tir": {
-					"vm_snapshot": 1
-				},
-				"snapshot": {
-					"vm_snapshot": 2
-				},
-				"cri": {
-					"vm_snapshot": 1,
-					"vm_create": 3
-				},
-				"servidor": {
-					"vm_create": 3
-				},
-				"precis": {
-					"vm_create": 6
-				},
-				"ram": {
-					"vm_create": 3
-				},
-				"disc": {
-					"vm_create": 3,
-					"vm_disk": 3
-				},
-				"aument": {
-					"vm_disk": 2
-				},
-				"acrescent": {
-					"vm_disk": 1
-				}
-			}
-		},
-		"pastTrainingSamples": [
-			{
-				"input": "apagar máquina",
-				"output": [
-					"vm_delete"
-				]
-			},
-			{
-				"input": "deletar máquina",
-				"output": [
-					"vm_delete"
-				]
-			},
-			{
-				"input": "apagar vm",
-				"output": [
-					"vm_delete"
-				]
-			},
-			{
-				"input": "deletar vm",
-				"output": [
-					"vm_delete"
-				]
-			},
-			{
-				"input": "tirar snapshot",
-				"output": [
-					"vm_snapshot"
-				]
-			},
-			{
-				"input": "criar snapshot",
-				"output": [
-					"vm_snapshot"
-				]
-			},
-			{
-				"input": "criar máquina",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "criar servidor",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "criar vm",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de uma vm ram disco",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de uma vm",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de uma máquina ram disco",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de uma máquina",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de um servidor ram disco",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "preciso de um servidor",
-				"output": [
-					"vm_create"
-				]
-			},
-			{
-				"input": "aumento disco",
-				"output": [
-					"vm_disk"
-				]
-			},
-			{
-				"input": "aumentar disco",
-				"output": [
-					"vm_disk"
-				]
-			},
-			{
-				"input": "acrescentar disco",
-				"output": [
-					"vm_disk"
-				]
-			}
-		]
-	}
+    "createNewObjectString": "function newClassifier() {\n    // First, define our base classifier type (a multi-label classifier based on winnow):\n    // var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {\n    //     binaryClassifierType: limdu.classifiers.Winnow.bind(0, {\n    //         retrain_count: 10\n    //     })\n    // });\n    var TextClassifier = limdu.classifiers.Bayesian.bind(0, {});\n\n    // Initialize a classifier with the base classifier type and the feature extractor:\n    return new limdu.classifiers.EnhancedClassifier({\n        classifierType: TextClassifier,\n        normalizer: limdu.features.LowerCaseNormalizer,\n        // normalizer: natural.PorterStemmerPt.tokenizeAndStem,\n        // function(str) {\n        //     limdu.features.LowerCaseNormalizer(natural.PorterStemmerEs.tokenizeAndStem(str))\n        // },\n        featureExtractor: function(sample, features) {\n            var grams = natural.PorterStemmerPt.tokenizeAndStem(sample);\n            limdu.features.NGramsFromArray(1, null, grams, features)\n        }\n        // featureExtractor: limdu.features.NGramsOfWords(1)\n    });\n}",
+    "object": {
+        "classifier": {
+            "cats": {
+                "vm_delete": 4,
+                "vm_snapshot": 2,
+                "vm_create": 9,
+                "vm_disk": 3
+            },
+            "words": {
+                "apag": {
+                    "vm_delete": 2
+                },
+                "máquin": {
+                    "vm_delete": 2,
+                    "vm_create": 3
+                },
+                "delet": {
+                    "vm_delete": 2
+                },
+                "vm": {
+                    "vm_delete": 2,
+                    "vm_create": 3
+                },
+                "tir": {
+                    "vm_snapshot": 1
+                },
+                "snapshot": {
+                    "vm_snapshot": 2
+                },
+                "cri": {
+                    "vm_snapshot": 1,
+                    "vm_create": 3
+                },
+                "servidor": {
+                    "vm_create": 3
+                },
+                "precis": {
+                    "vm_create": 6
+                },
+                "ram": {
+                    "vm_create": 3
+                },
+                "disc": {
+                    "vm_create": 3,
+                    "vm_disk": 3
+                },
+                "aument": {
+                    "vm_disk": 2
+                },
+                "acrescent": {
+                    "vm_disk": 1
+                }
+            }
+        },
+        "pastTrainingSamples": [{
+                "input": "apagar máquina",
+                "output": [
+                    "vm_delete"
+                ]
+            },
+            {
+                "input": "deletar máquina",
+                "output": [
+                    "vm_delete"
+                ]
+            },
+            {
+                "input": "apagar vm",
+                "output": [
+                    "vm_delete"
+                ]
+            },
+            {
+                "input": "deletar vm",
+                "output": [
+                    "vm_delete"
+                ]
+            },
+            {
+                "input": "tirar snapshot",
+                "output": [
+                    "vm_snapshot"
+                ]
+            },
+            {
+                "input": "criar snapshot",
+                "output": [
+                    "vm_snapshot"
+                ]
+            },
+            {
+                "input": "criar máquina",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "criar servidor",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "criar vm",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de uma vm ram disco",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de uma vm",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de uma máquina ram disco",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de uma máquina",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de um servidor ram disco",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "preciso de um servidor",
+                "output": [
+                    "vm_create"
+                ]
+            },
+            {
+                "input": "aumento disco",
+                "output": [
+                    "vm_disk"
+                ]
+            },
+            {
+                "input": "aumentar disco",
+                "output": [
+                    "vm_disk"
+                ]
+            },
+            {
+                "input": "acrescentar disco",
+                "output": [
+                    "vm_disk"
+                ]
+            }
+        ]
+    }
 }
