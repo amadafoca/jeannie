@@ -1,7 +1,8 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "jeannie",
+  "author": "SuporteInfraApps <suporte-infra-aplicacoes@bndes.gov.br>",
+  "description": "A generic ticket system that uses natural language processing and machine learning techniques.",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -40,6 +41,5 @@
     "cordova-plugin-console",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": [],
-  "description": "jeannie: An Ionic project"
+  "cordovaPlatforms": []
 }
