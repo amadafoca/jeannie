@@ -1,8 +1,9 @@
 // import modules
-var http = require('http');
-var sockjs = require('sockjs');
-var node_static = require('node-static');
-var Jeannie = require('./jeannie.js');
+import http = require('http');
+import sockjs = require('sockjs');
+import node_static = require('node-static');
+import { Jeannie } from './jeannie';
+
 // variables
 var sockjs_opts = {
     sockjs_url: "http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js"
