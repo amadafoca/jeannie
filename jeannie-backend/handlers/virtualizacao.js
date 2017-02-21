@@ -1,3 +1,14 @@
+// criar vm
+// clonar vm
+// apagar vm
+// modificar disco
+// modificar memória
+// modificar interfaces de rede
+// criar snapshot
+// apagar snapshot
+// restaurar snapshot
+// listar snapshots
+
 var fs = require('fs');
 var limdu = require('limdu');
 var natural = require('natural');
@@ -30,7 +41,7 @@ function newClassifier() {
 var intentClassifier = newClassifier();
 
 // Train and test:
-intentClassifier.trainBatch(require('./virtualization.learn'));
+intentClassifier.trainBatch(require('./virtualizacao.learn'));
 
 console.dir(intentClassifier.classify('Crie uma VM RedHat com 8GB de RAM e 32GB de disco. Obrigado'));
 console.dir(intentClassifier.classify('Preciso de uma máquina RedHat com 8GB de RAM e 32GB de disco. Grato'));
@@ -40,7 +51,7 @@ console.dir(intentClassifier.classify('Solicito snapshot da vrt0117. Obrigado'))
 console.dir(intentClassifier.classify('Solicito aumento de disco da vrt0117. Obrigado'));
 
 var intentClassifierString = serialize.toString(intentClassifier, newClassifier);
-fs.writeFile('./virtualization.json', intentClassifierString);
+fs.writeFile('./virtualizacao.json', intentClassifierString);
 
 // - os intents emitidos serão recebidos pelos resolvedores, que extrairão parâmetros do texto
 // |- Acesso/Contas
