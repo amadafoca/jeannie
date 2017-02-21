@@ -11,25 +11,27 @@ import { MyApp } from '../../app/app.component';
 export class Page1 {
   inputText = '';
 
-  threads = [{
+  cards = [{
     id: 1,
-    text: 'Reiniciar servidor Liberty SGO em desenvolvimento.',
+    description: 'Reiniciar servidor Liberty SGO em desenvolvimento.',
     creation_date: '09/02/2017 12:23'
   }, {
       id: 2,
-      text: 'Criar ambiente Liberty para a aplicação FRO em desenvolvimento.',
+      description: 'Criar ambiente Liberty para a aplicação FRO em desenvolvimento.',
       creation_date: '10/02/2017 14:23'
     }, {
       id: 3,
-      text: 'Passagem da aplicação FRO no Liberty em desenvolvimento.',
+      description: 'Passagem da aplicação FRO no Liberty em desenvolvimento.',
       creation_date: '10/02/2017 17:52'
     }, {
       id: 4,
-      text: 'Criar ambiente Liberty para a aplicação FRO em desenvolvimento.',
+      description: 'Criar ambiente Liberty para a aplicação FRO em desenvolvimento.',
       creation_date: '10/02/2017 14:23'
     }];
 
     loading: any;
+
+    myApp: any = MyApp;
 
     @ViewChild('mainPage') mainPage;
     @ViewChild('cInputRequest') cInputRequest;
@@ -46,17 +48,24 @@ export class Page1 {
     // if (!this.isComponentsInitialized) {
     //   this.isComponentsInitialized = true;
     // this.cInputRequest.setFocus();
-    this.scrollDown();
+    // this.scrollDown();
+    //alert(this.myApp.cards[0].description);
+    //
     // }
   }
 
+  ionViewDidEnter() {
+    //alert(this.myApp.cards[0].description);
+    this.scrollDown();
+  }
+
   sendRequest() {
-    var newThread = {
+    var newCard = {
       id: 10,
-      text: this.inputText,
+      description: this.inputText,
       creation_date: new Date().toString()
     };
-    this.threads.push(newThread);
+    this.cards.push(newCard);
     this.inputText = '';
     this.scrollDown();
     this.loading = this.loadingCtrl.create({
@@ -65,7 +74,7 @@ export class Page1 {
     this.loading.present();
     setTimeout(2000);
     this.loading.dismiss();
-    this.clickCard(this.threads.length-1);
+    this.clickCard(this.cards.length-1);
   }
 
   scrollDown() {
@@ -79,7 +88,7 @@ export class Page1 {
 
   clickCard(i) {
     var myApp: any = MyApp;
-    myApp.selectedThread = this.threads[i];
+    myApp.selectedCard = this.cards[i];
     this.navCtrl.push(Page2);
   }
 

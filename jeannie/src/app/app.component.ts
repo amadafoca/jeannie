@@ -7,7 +7,7 @@ import { Page2 } from '../pages/page2/page2';
 
 import { JeannieService } from '../services/services';
 
-import { Card } from './entidades';
+import { Card, Chat } from './entidades';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +21,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
 
   jeannieService: JeannieService = new JeannieService();
-  selectedThread = 0;
+  selectedCard = 0;
   cards: Card[];
 
   constructor(public platform: Platform) {
@@ -44,7 +44,9 @@ export class MyApp {
       Splashscreen.hide();
 
       // this.loadCards();
-      this.createCard();
+      // this.createCard();
+      this.loadCardsMock();
+      //alert('initapp');
 
     });
   }
@@ -54,6 +56,15 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     window.alert(page.component);
     this.nav.setRoot(page.component);
+  }
+
+  loadCardsMock() {
+    var chats;
+    chats = new Chat('Confirma?', 'question', [], '');
+    this.cards.push(
+      new Card(1, 'Reiniciar servidor Liberty SGO em desenvolvimento.',
+      chats, Date.now(), Date.now(), 'started')
+    );
   }
 
   loadCards() {

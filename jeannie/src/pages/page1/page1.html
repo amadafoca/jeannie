@@ -9,17 +9,17 @@
 
 <ion-content #mainPage padding>
 
-  <ion-card *ngFor="let thread of threads; let idx = index">
+  <ion-card *ngFor="let card of cards; let idx = index">
 
     <ion-card-content (click)="clickCard(idx)">
       <ion-card-title>
-        {{thread.text}}
+        {{card.description}}
       </ion-card-title>
       <p>
-        Requisição #{{thread.id}}
+        Requisição #{{card.id}}
       </p>
       <p>
-        {{thread.creation_date}}
+        {{card.creation_date}}
       </p>
     </ion-card-content>
 
@@ -51,7 +51,7 @@
 <ion-footer>
   <form>
     <ion-item>
-      <ion-input type="text" #cInputRequest placeholder="o que deseja?" [(ngModel)]="inputText" name="inputText"></ion-input>
+      <ion-input type="text" #cInputRequest placeholder="Em que posso ajudar você?" [(ngModel)]="inputText" name="inputText"></ion-input>
       <button ion-button item-right outline type="submit" [disabled]="inputText==''" (click)="sendRequest()">Enviar</button>
     </ion-item>
   </form>

@@ -3,20 +3,20 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Requisição #{{myApp.selectedThread.id}}</ion-title>
+    <ion-title>Requisição #{{myApp.selectedCard.id}}</ion-title>
   </ion-navbar>
 
   <ion-card [ngClass]="{true:'card-sucess', false:'card-failed'}[card_sucess]">
 
     <ion-card-content>
       <ion-item text-wrap no-padding>
-        <p><b>{{myApp.selectedThread.text}}</b></p>
+        <p><b>{{myApp.selectedCard.description}}</b></p>
         <ion-avatar item-right no-padding><img [src]="img_rundeck"></ion-avatar>
       </ion-item>
 
       <ion-item text-wrap no-padding>
         <p>
-          Requisição #{{myApp.selectedThread.id}} - {{myApp.selectedThread.creation_date}}
+          Requisição #{{myApp.selectedCard.id}} - {{myApp.selectedCard.creation_date}}
         </p>
         <ion-badge item-right>9 mensagens</ion-badge>
       </ion-item>
